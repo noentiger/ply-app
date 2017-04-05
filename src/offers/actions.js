@@ -6,3 +6,9 @@ export const addOffer = (offer) => {
     offer
   };
 }
+
+export const toggleAddModal = () => {
+  return {
+    type: types.TOGGLE_ADD_MODAL,
+  };
+}
