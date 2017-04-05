@@ -1,8 +1,8 @@
-import React, {PropTypes, Component} from 'react';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
+import React, { PropTypes, Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import * as actions from '../actions';
-import {getShowAddModal} from '../reducer';
+import { getShowAddModal } from '../reducer';
 import OffersList from '../components/OffersList';
 import AddOffer from '../components/AddOffer';
 import AddButton from '../components/AddButton';
@@ -12,19 +12,19 @@ class OfferContainer extends Component {
     super(props);
 
     this.state = {
-      offers: []
+      offers: [],
     };
   }
 
   render() {
-    const {offers} = this.props;
+    const { offers } = this.props;
 
     return (
       <div>
         <AddOffer
           visible={this.props.showAddModal}
           addOffer={this.props.actions.addOffer}
-          onClose={this.props.actions.toggleAddModal} 
+          onClose={this.props.actions.toggleAddModal}
         />
         <AddButton onTap={this.props.actions.toggleAddModal} />
         <OffersList offers={offers} />
@@ -34,23 +34,22 @@ class OfferContainer extends Component {
 }
 
 OfferContainer.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
   offers: PropTypes.array.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
   actions: PropTypes.object.isRequired,
+  showAddModal: PropTypes.bool.isRequired,
 };
 
-function mapStateToProps(state, props) {
-  return {
-    offers: state.offers.items,
-    showAddModal: getShowAddModal(state),
-  };
-}
+const mapStateToProps = state => ({
+  offers: state.offers.items,
+  showAddModal: getShowAddModal(state),
+});
 
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(actions, dispatch)
-  }
-}
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators(actions, dispatch),
+});
 
 export default connect(
-  mapStateToProps, mapDispatchToProps
+  mapStateToProps, mapDispatchToProps,
 )(OfferContainer);

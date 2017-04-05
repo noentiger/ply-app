@@ -21,15 +21,15 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case types.ADD_OFFER:
-    return {
-      ...state,
-      items: [action.offer, ...state.items],
-    };
+      return {
+        ...state,
+        items: [action.offer, ...state.items],
+      };
     case types.TOGGLE_ADD_MODAL:
-    return {
-      ...state,
-      showAddModal: !state.showAddModal,
-    };
+      return {
+        ...state,
+        showAddModal: !state.showAddModal,
+      };
     default:
       return state;
   }

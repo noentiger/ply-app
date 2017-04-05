@@ -1,5 +1,5 @@
-import * as actions from './actions'
-import * as types from './actionTypes'
+import * as actions from './actions';
+import * as types from './actionTypes';
 import reducer from './reducer';
 
 const initialState = {
@@ -28,23 +28,23 @@ describe('actions', () => {
     };
     const expectedAction = {
       type: types.ADD_OFFER,
-      offer
-    }
-    expect(actions.addOffer(offer)).toEqual(expectedAction)
-  })
+      offer,
+    };
+    expect(actions.addOffer(offer)).toEqual(expectedAction);
+  });
   it('should open the new offer modal', () => {
     expect(reducer(undefined, {
       type: 'TOGGLE_ADD_MODAL',
-      showAddModal: false
+      showAddModal: false,
     })).toEqual({
       ...initialState,
       showAddModal: true,
     });
-  })
-})
+  });
+});
 
-describe('reducer', function() {
-  it('should return the initial state', function() {
+describe('reducer', () => {
+  it('should return the initial state', () => {
     expect(reducer(undefined, {})).toEqual(initialState);
   });
 });

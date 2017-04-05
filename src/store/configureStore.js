@@ -1,6 +1,4 @@
+import { createStore } from 'redux';
 import rootReducer from '../rootReducer';
-import {createStore} from 'redux';
 
-export default (initialState) => {
-  return createStore(rootReducer, initialState);
-};
+export default initialState => createStore(rootReducer, initialState);

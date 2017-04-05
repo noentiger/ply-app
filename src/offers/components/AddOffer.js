@@ -1,65 +1,61 @@
-import React, {PropTypes, Component} from 'react';
+import React, { PropTypes, Component } from 'react';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 
 class AddOffer extends Component {
   constructor(props) {
     super(props);
-    this.state = this._getState();
+    this.state = this.getState();
   }
 
-  _getState = () => {
-    return {
-      title: '',
-      balance: 0,
-      isDirty: false,
-      _isMounted: false,
-    };
-  }
+  getState = () => ({
+    title: '',
+    balance: 0,
+    isDirty: false,
+    _isMounted: false,
+  })
 
-  _handleFieldChange = (field, event) => {
+  handleFieldChange = (field, event) => {
     this.setState({ [field]: event.target.value });
   }
 
-  _handleAddOffer = () => {
-    const data = this._validateFields();
+  handleAddOffer = () => {
+    const data = this.validateFields();
     if (data) {
       this.props.addOffer(data);
       this.props.onClose();
     }
   }
 
-  _validateFields = () => {
+  validateFields = () => {
     const { title, balance } = this.state;
     if (!title || !balance) {
       this.setState({ isDirty: true });
       return false;
     }
-    this.setState(this._getState());
+    this.setState(this.getState());
     return ({
       title,
-      balance,
+      balance: parseInt(balance, 10),
     });
   }
 
   render() {
-
     const { isDirty, title, balance } = this.state;
     const { visible, onClose } = this.props;
 
     const actions = [
       <FlatButton
         label="Cancel"
-        primary={true}
+        primary
         onTouchTap={onClose}
       />,
       <FlatButton
         label="Add"
-        primary={true}
-        keyboardFocused={true}
-        onTouchTap={this._handleAddOffer}
+        primary
+        keyboardFocused
+        onTouchTap={this.handleAddOffer}
       />,
     ];
 
@@ -78,7 +74,7 @@ class AddOffer extends Component {
             floatingLabelText="Title"
             fullWidth
             value={title}
-            onChange={(e) => this._handleFieldChange('title', e)}
+            onChange={e => this.handleFieldChange('title', e)}
             errorText={isDirty && !title ? 'Please enter a title' : false}
           />
           <TextField
@@ -87,7 +83,7 @@ class AddOffer extends Component {
             fullWidth
             type="number"
             defaultValue={balance}
-            onChange={(e) => this._handleFieldChange('balance', e)}
+            onChange={e => this.handleFieldChange('balance', e)}
             errorText={isDirty && !balance ? 'Please enter balance' : false}
           />
         </Dialog>
