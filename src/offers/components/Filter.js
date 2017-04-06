@@ -1,31 +1,41 @@
 import React, { PropTypes } from 'react';
 import { Grid, Col, Row } from 'react-app-flexbox-grid/lib';
-import SelectField from 'material-ui/SelectField';
+import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 import { filters } from '../constants';
 
-const menuItems = values => filters.map(filter => (
+const styles = {
+  customWidth: {
+    width: '100%',
+    fontSize: '5vh',
+  },
+  menuItemStyle: {
+    width: '100%',
+    fontSize: '4vh',
+    lineHeight: '6vh',
+  },
+};
+
+const menuItems = () => filters.map(filter => (
   <MenuItem
     key={filter}
-    insetChildren
-    checked={values && values.includes(filter)}
     value={filter}
     primaryText={filter}
   />
   ));
 
 const Filter = ({ selected, onFilter }) => (
-  <Grid>
-    <Row>
-      <Col xs={12} sm={5} md={4} lg={3}>
-        <SelectField
-          hintText="Filter by skills"
+  <Grid style={{ padding: '5vh' }}>
+    <Row center="xs">
+      <Col xs={12} sm={6} md={5} lg={4}>
+        <DropDownMenu
+          menuItemStyle={styles.menuItemStyle}
+          style={styles.customWidth}
           value={selected}
           onChange={onFilter}
-          fullWidth
         >
           {menuItems(selected)}
-        </SelectField>
+        </DropDownMenu>
       </Col>
     </Row>
   </Grid>
