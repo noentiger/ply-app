@@ -11,7 +11,7 @@ class AddOffer extends Component {
 
   getState = () => ({
     title: '',
-    balance: 0,
+    balance: null,
     isDirty: false,
     _isMounted: false,
   })
@@ -63,7 +63,7 @@ class AddOffer extends Component {
     return (
       <div>
         <Dialog
-          title="Add a new offer"
+          title="Add a New Offer"
           actions={actions}
           modal={false}
           open={visible}
@@ -85,7 +85,7 @@ class AddOffer extends Component {
             type="number"
             defaultValue={balance}
             onChange={e => this.handleFieldChange('balance', e)}
-            errorText={isDirty && !balance ? 'Please enter balance' : false}
+            errorText={isDirty && !balance ? 'Please enter a balance' : false}
           />
         </Dialog>
       </div>
