@@ -6,7 +6,7 @@ const OffersList = ({ offers, onDelete }) => (
   <Grid fluid>
     <Row around="xs">
       {offers.map(offer =>
-        <Offer key={offer.title} offer={offer} onDelete={() => onDelete(offer.id)} />,
+        <Offer key={offer.id} offer={offer} onDelete={() => onDelete(offer.id)} />,
         )}
     </Row>
   </Grid>
