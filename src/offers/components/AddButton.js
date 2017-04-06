@@ -5,7 +5,7 @@ import ContentAdd from 'material-ui/svg-icons/content/add';
 const AddButton = ({ onTap }) => (
   <FloatingActionButton
     onTouchTap={onTap}
-    style={{ right: 20, bottom: 20, position: 'fixed' }}
+    style={{ right: 20, bottom: 20, position: 'fixed', zIndex: 10 }}
     secondary
   >
     <ContentAdd />
