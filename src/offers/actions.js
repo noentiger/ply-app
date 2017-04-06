@@ -5,6 +5,11 @@ export const addOffer = offer => ({
   offer,
 });
 
+export const deleteOffer = id => ({
+  type: types.DELETE_OFFER,
+  id,
+});
+
 export const toggleAddModal = () => ({
   type: types.TOGGLE_ADD_MODAL,
 });

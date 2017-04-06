@@ -37,7 +37,7 @@ class OfferContainer extends Component {
             }
           }
         />
-        <OffersList offers={offers} />
+      <OffersList offers={offers} onDelete={this.props.actions.deleteOffer} />
       </div>
     );
   }

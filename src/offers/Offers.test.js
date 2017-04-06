@@ -5,14 +5,17 @@ import reducer from './reducer';
 const initialState = {
   items: [
     {
+      id: 'woufsibdonfoskd4',
       title: 'Spring retention campaign',
       balance: 10000,
     },
     {
+      id: 'w04fnspdifnonifrs',
       title: 'Punchcard',
       balance: -3000,
     },
     {
+      id: '9n4fw0sdfiosdf',
       title: 'Loyalty Rewards',
       balance: 500000,
     },
@@ -55,6 +58,26 @@ describe('actions', () => {
     })).toEqual({
       ...initialState,
       selectedFilter: 'negative',
+    });
+  });
+  it('should delete an offer', () => {
+    expect(reducer(undefined, {
+      type: 'DELETE_OFFER',
+      id: 'woufsibdonfoskd4',
+    })).toEqual({
+      ...initialState,
+      items: [
+        {
+          id: 'w04fnspdifnonifrs',
+          title: 'Punchcard',
+          balance: -3000,
+        },
+        {
+          id: '9n4fw0sdfiosdf',
+          title: 'Loyalty Rewards',
+          balance: 500000,
+        },
+      ],
     });
   });
 });

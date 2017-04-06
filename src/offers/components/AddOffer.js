@@ -38,6 +38,7 @@ class AddOffer extends Component {
     return ({
       title,
       balance: parseInt(balance, 10),
+      id: Math.random().toString(36).slice(2),
     });
   }
 
