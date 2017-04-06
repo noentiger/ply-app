@@ -3,7 +3,7 @@ import { Grid, Row } from 'react-app-flexbox-grid/lib';
 import Offer from './Offer';
 
 const OffersList = ({ offers, onDelete }) => (
-  <Grid>
+  <Grid fluid>
     <Row around="xs">
       {offers.map(offer =>
         <Offer key={offer.title} offer={offer} onDelete={() => onDelete(offer.id)} />,

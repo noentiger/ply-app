@@ -1,8 +1,9 @@
 import React, { PropTypes } from 'react';
 import { Grid, Col, Row } from 'react-app-flexbox-grid/lib';
 import DropDownMenu from 'material-ui/DropDownMenu';
+import FilterListIcon from 'material-ui/svg-icons/content/filter-list';
 import MenuItem from 'material-ui/MenuItem';
-import { filters } from '../constants';
+import { filters, FILTER_ALL } from '../constants';
 
 const styles = {
   customWidth: {
@@ -20,19 +21,20 @@ const menuItems = () => filters.map(filter => (
   <MenuItem
     key={filter}
     value={filter}
-    primaryText={filter}
+    primaryText={filter === FILTER_ALL ? `Show ${filter}` : `Show with ${filter} balance`}
   />
   ));
 
 const Filter = ({ selected, onFilter }) => (
-  <Grid style={{ padding: '5vh' }}>
+  <Grid fluid style={{ padding: '5vh' }}>
     <Row center="xs">
-      <Col xs={12} sm={6} md={5} lg={4}>
+      <Col xs={12} sm={6} md={6} lg={5}>
         <DropDownMenu
           menuItemStyle={styles.menuItemStyle}
           style={styles.customWidth}
           value={selected}
           onChange={onFilter}
+          iconButton={<FilterListIcon />}
         >
           {menuItems(selected)}
         </DropDownMenu>
