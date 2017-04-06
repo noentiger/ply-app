@@ -1,6 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import Snackbar from 'material-ui/Snackbar';
 import * as actions from '../actions';
 import { getShowAddModal, getSelectedFilter } from '../reducer';
 import OffersList from '../components/OffersList';
@@ -15,8 +16,22 @@ class OfferContainer extends Component {
 
     this.state = {
       offers: [],
+      snackbar: false,
     };
   }
+
+  handleRequestClose = () => {
+    this.setState({
+      snackbar: false,
+    });
+  };
+
+  handleDeleteOffer = (id) => {
+    this.props.actions.deleteOffer(id);
+    this.setState({
+      snackbar: true,
+    });
+  };
 
   render() {
     const { offers } = this.props;
@@ -37,7 +52,13 @@ class OfferContainer extends Component {
             }
           }
         />
-      <OffersList offers={offers} onDelete={this.props.actions.deleteOffer} />
+        <OffersList offers={offers} onDelete={id => this.handleDeleteOffer(id)} />
+        <Snackbar
+          open={this.state.snackbar}
+          message="Offer was deleted"
+          autoHideDuration={4000}
+          onRequestClose={this.handleRequestClose}
+        />
       </div>
     );
   }
