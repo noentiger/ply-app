@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Card, CardActions, CardTitle, CardMedia } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
+import DeleteIcon from 'material-ui/svg-icons/action/delete';
 import Dialog from 'material-ui/Dialog';
 import picture from '../offer.jpg';
 
@@ -55,7 +56,7 @@ export default class Offer extends Component {
             <img src={picture} alt={title} />
           </CardMedia>
           <CardActions>
-            <FlatButton onTouchTap={this.handleShowConfirmDelete} label="Delete" />
+            <FlatButton onTouchTap={this.handleShowConfirmDelete} label="Delete" icon={<DeleteIcon />} />
           </CardActions>
         </Card>
 
