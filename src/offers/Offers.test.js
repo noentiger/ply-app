@@ -18,7 +18,14 @@ const initialState = {
     },
   ],
   showAddModal: false,
+  selectedFilter: 'all',
 };
+
+describe('reducer', () => {
+  it('should return the initial state', () => {
+    expect(reducer(undefined, {})).toEqual(initialState);
+  });
+});
 
 describe('actions', () => {
   it('should create an action to add an offer', () => {
@@ -41,10 +48,13 @@ describe('actions', () => {
       showAddModal: true,
     });
   });
-});
-
-describe('reducer', () => {
-  it('should return the initial state', () => {
-    expect(reducer(undefined, {})).toEqual(initialState);
+  it('should select correct filter', () => {
+    expect(reducer(undefined, {
+      type: 'CHANGE_FILTER',
+      filter: 'negative',
+    })).toEqual({
+      ...initialState,
+      selectedFilter: 'negative',
+    });
   });
 });

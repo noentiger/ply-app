@@ -16,6 +16,7 @@ const initialState = {
     },
   ],
   showAddModal: false,
+  selectedFilter: 'all',
 };
 
 export default (state = initialState, action) => {
@@ -30,9 +31,15 @@ export default (state = initialState, action) => {
         ...state,
         showAddModal: !state.showAddModal,
       };
+    case types.CHANGE_FILTER:
+      return {
+        ...state,
+        selectedFilter: action.filter,
+      };
     default:
       return state;
   }
 };
 
 export const getShowAddModal = state => state.offers.showAddModal;
+export const getSelectedFilter = state => state.offers.selectedFilter;

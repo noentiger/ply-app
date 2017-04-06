@@ -8,3 +8,8 @@ export const addOffer = offer => ({
 export const toggleAddModal = () => ({
   type: types.TOGGLE_ADD_MODAL,
 });
+
+export const changeFilter = filter => ({
+  type: types.CHANGE_FILTER,
+  filter,
+});
