@@ -52,7 +52,11 @@ class OfferContainer extends Component {
             }
           }
         />
-        <OffersList offers={offers} onDelete={id => this.handleDeleteOffer(id)} />
+        <OffersList
+          offers={offers}
+          onDelete={id => this.handleDeleteOffer(id)}
+          onDeleteTag={() => {}}
+        />
         <Snackbar
           open={this.state.snackbar}
           message="Offer was deleted"

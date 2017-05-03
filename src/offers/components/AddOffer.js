@@ -2,6 +2,7 @@ import React, { PropTypes, Component } from 'react';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
+import ChipInput from 'material-ui-chip-input'
 
 class AddOffer extends Component {
   constructor(props) {
@@ -12,6 +13,7 @@ class AddOffer extends Component {
   getState = () => ({
     title: '',
     balance: null,
+    tags: [],
     isDirty: false,
     _isMounted: false,
   })
@@ -29,8 +31,8 @@ class AddOffer extends Component {
   }
 
   validateFields = () => {
-    const { title, balance } = this.state;
-    if (!title || !balance) {
+    const { title, balance, tags } = this.state;
+    if (!title || !balance || !tags.length) {
       this.setState({ isDirty: true });
       return false;
     }
@@ -38,12 +40,23 @@ class AddOffer extends Component {
     return ({
       title,
       balance: parseInt(balance, 10),
+      tags,
       id: Math.random().toString(36).slice(2),
     });
   }
 
+  handleAddChip = (chip) => {
+    this.setState({
+      tags: [...this.state.tags, chip],
+    });
+  }
+
+  handleDeleteChip = () => {
+
+  }
+
   render() {
-    const { isDirty, title, balance } = this.state;
+    const { isDirty, title, balance, tags } = this.state;
     const { visible, onClose } = this.props;
 
     const actions = [
@@ -86,6 +99,14 @@ class AddOffer extends Component {
             defaultValue={balance}
             onChange={e => this.handleFieldChange('balance', e)}
             errorText={isDirty && !balance ? 'Please enter a balance' : false}
+          />
+          <ChipInput
+            value={tags}
+            hintText="Add a tag"
+            onRequestAdd={chip => this.handleAddChip(chip)}
+            onRequestDelete={(chip, index) => this.handleDeleteChip(chip, index)}
+            errorText={isDirty && !tags.length ? 'Please add a tag' : false}
+            fullWidth
           />
         </Dialog>
       </div>

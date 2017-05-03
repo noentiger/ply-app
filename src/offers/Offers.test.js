@@ -8,16 +8,19 @@ const initialState = {
       id: 'woufsibdonfoskd4',
       title: 'Spring retention campaign',
       balance: 10000,
+      tags: ['Lorem', 'Ipsum', 'Wrapp'],
     },
     {
       id: 'w04fnspdifnonifrs',
       title: 'Punchcard',
       balance: -3000,
+      tags: ['Wrappmin', 'Wrapp Index'],
     },
     {
       id: '9n4fw0sdfiosdf',
       title: 'Loyalty Rewards',
       balance: 500000,
+      tags: ['Wrapp Ale'],
     },
   ],
   showAddModal: false,
@@ -35,6 +38,7 @@ describe('actions', () => {
     const offer = {
       title: 'Foo',
       balance: 20004,
+      tags: ['Wrapp Ale'],
     };
     const expectedAction = {
       type: types.ADD_OFFER,
@@ -71,11 +75,13 @@ describe('actions', () => {
           id: 'w04fnspdifnonifrs',
           title: 'Punchcard',
           balance: -3000,
+          tags: ['Wrappmin', 'Wrapp Index'],
         },
         {
           id: '9n4fw0sdfiosdf',
           title: 'Loyalty Rewards',
           balance: 500000,
+          tags: ['Wrapp Ale'],
         },
       ],
     });

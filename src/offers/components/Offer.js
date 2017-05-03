@@ -1,7 +1,9 @@
 import React, { Component, PropTypes } from 'react';
-import { Card, CardActions, CardTitle, CardMedia } from 'material-ui/Card';
+import { Card, CardActions, CardTitle, CardMedia, CardText } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import DeleteIcon from 'material-ui/svg-icons/action/delete';
+import { Row } from 'react-app-flexbox-grid/lib';
+import Chip from 'material-ui/Chip';
 import Dialog from 'material-ui/Dialog';
 import picture from '../offer.jpg';
 
@@ -24,7 +26,7 @@ export default class Offer extends Component {
   }
 
   render() {
-    const { title, balance } = this.props.offer;
+    const { title, balance, tags } = this.props.offer;
 
     const actions = [
       <FlatButton
@@ -55,6 +57,23 @@ export default class Offer extends Component {
           >
             <img src={picture} alt={title} />
           </CardMedia>
+          <CardText>
+            <Row>
+              {
+                tags.map(
+                  tag => (
+                    <Chip
+                      style={{ marginRight: 5, marginBottom: 5 }}
+                      onRequestDelete={() => { this.props.onDeleteTag(tag); }}
+                      key={tag}
+                    >
+                      {tag}
+                    </Chip>
+                  ),
+                )
+              }
+            </Row>
+          </CardText>
           <CardActions>
             <FlatButton onTouchTap={this.handleShowConfirmDelete} label="Delete" icon={<DeleteIcon />} />
           </CardActions>
@@ -78,6 +97,8 @@ Offer.propTypes = {
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     balance: PropTypes.number.isRequired,
+    tags: PropTypes.arrayOf(PropTypes.string).isRequired,
   }).isRequired,
   onDelete: PropTypes.func.isRequired,
+  onDeleteTag: PropTypes.func.isRequired,
 };
